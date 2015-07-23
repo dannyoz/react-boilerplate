@@ -1,0 +1,15 @@
+{
+  "name": "reactjs-boilerplate",
+  "version": "0.0.0",
+  "authors": [
+    "dan osborne <dan.osborne@fantasticthinking.com>"
+  ],
+  "description": "react boilerplate",
+  "license": "MIT",
+  "ignore": [
+    "**/.*",
+    "node_modules",
+    "test",
+    "tests"
+  ]
+}

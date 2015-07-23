@@ -1,0 +1,87 @@
+// Import all the sass partials for compilation
+
+// 1. PRE-DEFINED VARIABLES AND MIXINS
+// =====================================================
+@import
+	"compass/css3",
+	"includes/includes";
+	
+// =====================================================
+
+@include normalise(3em);
+@include containerClass(1100px);
+@include fullScreenClass;
+@include centreClasses;
+@include gridClasses;
+@include leckerli-one;
+
+@include form;
+@include rangeInput;
+
+
+@include fadeIn;
+@include pulse;
+@include cardClass;
+@include paddedClass;
+@include columnText(3);
+@include tables;
+
+
+@include navigationClasses("vertical",0.9em,50px,20px);
+@include navigationClasses("horizontal",0.9em,50px,20px,0);
+
+@include masonryClasses(3,1em,0);
+
+@media (max-width:700px){
+	
+	@include masonryClasses(2,0.9em,0);
+}
+
+@media (max-width:500px){
+	
+	@include masonryClasses(1,0.8em,0);
+}
+
+
+@include icons;
+
+
+// Theme
+$type : "dark";
+$themeColour : #1C2227;
+
+
+@include themeBase($themeColour);
+@include roboto-slab(h1 h2 h3 h4 h5 h6 button,300);
+@include roboto(body  textarea,400);
+@include themeTypography($themeColour,#8E949D,#E0F7FF);
+@include themeLinks(white);
+
+@include themeForms($themeColour,$col-secondary);
+@include themePanelClass($type);
+
+@include themeNavigation("main",#111,#000,#aaa,#000);
+@include themeNavigation("page-nav",darken($themeColour,5%),#000,#E0F7FF);
+
+@include themeNavigation($type);
+@include themeStack($themeColour);
+@include themeTables($themeColour);
+@include themeRangeInput($themeColour,lighten($themeColour,20%),$col-secondary);
+
+@include button;
+@include buttonTheme('slate',lighten($themeColour,5%));
+@include buttonTheme('primary',$col-primary);
+@include buttonTheme('secondary',$col-secondary);
+@include buttonTheme('warning',$col-warning);
+@include buttonTheme('danger',$col-danger);
+@include buttonTheme('submit',$col-success);
+@include buttonTheme('turquoise',$col-turquoise);
+@include themeCardClass(lighten($themeColour,5%),lighten($themeColour,1%),$col-secondary);
+
+@include stickyHeaderClass(50px);
+
+header.sticky{
+
+	background-color: #111;
+	color:#eee;
+}
