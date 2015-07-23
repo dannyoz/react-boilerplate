@@ -1,7 +1,15 @@
+var Example = React.createClass({displayName: "Example",
+	render : function(){
+		return (
+			React.createElement("div", {className: "centre text-centre"}, 
+				React.createElement("h1", {className: "fade-in"}, "React.js App"), 
+				React.createElement("p", {className: "fade-in"}, "This is a react component example...")
+			)
+		);
+	}
+});
+
 React.render(
-    React.createElement("div", {id: "main"}, 
-      	React.createElement(Header, null), 
-      	React.createElement(CardHolder, {api: "https://api.behance.net/v2/users/danosborne854b/projects?client_id=wvNTJgcr74RaKq61IVckPzUGzT5LYt5h"})
-  	),
+ 	React.createElement(Example, null),
     document.getElementById('app')
 );

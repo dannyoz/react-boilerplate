@@ -1,7 +1,15 @@
+var Example = React.createClass({
+	render : function(){
+		return (
+			<div className="centre text-centre">
+				<h1 className="fade-in">React.js App</h1>
+				<p className="fade-in">This is a react component example...</p>
+			</div>
+		);
+	}
+});
+
 React.render(
-    <div id="main">
-      	<Header />
-      	<CardHolder api="https://api.behance.net/v2/users/danosborne854b/projects?client_id=wvNTJgcr74RaKq61IVckPzUGzT5LYt5h" />
-  	</div>,
+ 	<Example/>,
     document.getElementById('app')
 );

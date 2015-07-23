@@ -46,42 +46,46 @@
 @include icons;
 
 
-// Theme
-$type : "dark";
-$themeColour : #1C2227;
+$type : "light";
+$themeColour : #e9e9e9;
+
 
 
 @include themeBase($themeColour);
-@include roboto-slab(h1 h2 h3 h4 h5 h6 button,300);
-@include roboto(body  textarea,400);
-@include themeTypography($themeColour,#8E949D,#E0F7FF);
-@include themeLinks(white);
+@include open-sans(h1 h2 h3 h4 h5 h6 body textarea);
+@include themeTypography($themeColour,#666,#111);
+@include themeLinks;
 
-@include themeForms($themeColour,$col-secondary);
+@include themeForms($themeColour,$col-primary);
 @include themePanelClass($type);
 
 @include themeNavigation("main",#111,#000,#aaa,#000);
-@include themeNavigation("page-nav",darken($themeColour,5%),#000,#E0F7FF);
+@include themeNavigation("page-nav",#f5f5f5,#fff,#555,#e9e9e9);
 
-@include themeNavigation($type);
 @include themeStack($themeColour);
 @include themeTables($themeColour);
-@include themeRangeInput($themeColour,lighten($themeColour,20%),$col-secondary);
+@include themeRangeInput($themeColour,darken($themeColour,20%),$col-primary);
 
 @include button;
-@include buttonTheme('slate',lighten($themeColour,5%));
+@include buttonTheme('dark',#222);
 @include buttonTheme('primary',$col-primary);
 @include buttonTheme('secondary',$col-secondary);
 @include buttonTheme('warning',$col-warning);
 @include buttonTheme('danger',$col-danger);
 @include buttonTheme('submit',$col-success);
 @include buttonTheme('turquoise',$col-turquoise);
-@include themeCardClass(lighten($themeColour,5%),lighten($themeColour,1%),$col-secondary);
 
-@include stickyHeaderClass(50px);
+
 
 header.sticky{
 
 	background-color: #111;
 	color:#eee;
+}
+
+@include themeCardClass(lighten($themeColour,5%),darken($themeColour,7%),$col-primary);
+
+.grid-block, .masonry-item, .grid-example, .icon-holder{
+	
+	@extend .card;
 }
