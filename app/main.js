@@ -28816,14 +28816,19 @@ var CardHolder = React.createClass({displayName: "CardHolder",
 
 	getInitialState : function(){
 		return {
+			pageNumber : 1,
 			projects : []
 		}
 	},
 
 	componentDidMount : function(){
+		this.makeRequest(this.state.pageNumber);
+	},
+
+	makeRequest : function(page){
 
 		$.ajax({
-		    url: this.props.api,
+		    url: this.props.api + "&page=" + page,
 		    jsonp: "callback",
 		    dataType: "jsonp",
 		    success: this.onDataReceived
@@ -28831,12 +28836,17 @@ var CardHolder = React.createClass({displayName: "CardHolder",
 	},
 
 	onDataReceived : function(data){
-
+		
 		if (this.isMounted()) {
         	this.setState({
-          		projects : data.projects
+          		projects : this.state.projects.concat(data.projects),
+          		pageNumber : this.state.pageNumber + 1
         	});
       	}
+	},
+
+	loadMorePosts : function(){
+		this.makeRequest(this.state.pageNumber);
 	},
 
 	render:function(){
@@ -28846,6 +28856,9 @@ var CardHolder = React.createClass({displayName: "CardHolder",
 					this.state.projects.map(function (data){
 						return React.createElement(Card, {data: data})
 					})
+				), 
+				React.createElement("div", {className: "text-centre"}, 
+					React.createElement(Loadmore, {onClick: this.loadMorePosts})
 				)
 			)
 		);
@@ -28889,17 +28902,14 @@ var Header = React.createClass({displayName: "Header",
 var Loadmore = React.createClass({displayName: "Loadmore",
 	render : function(){
 		return (
-			React.createElement("div", {className: "container text-centre"}, 
-				React.createElement("button", {className: "primary large"}, "Load more")
-			)
+			React.createElement("button", {className: "primary large", onClick: this.props.onClick}, "Load more")
 		);
 	}
 });
 React.render(
     React.createElement("div", {id: "main"}, 
       	React.createElement(Header, null), 
-      	React.createElement(CardHolder, {api: "https://api.behance.net/v2/users/danosborne854b/projects?client_id=wvNTJgcr74RaKq61IVckPzUGzT5LYt5h"}), 
-  		React.createElement(Loadmore, null)
+      	React.createElement(CardHolder, {api: "https://api.behance.net/v2/users/danosborne854b/projects?client_id=wvNTJgcr74RaKq61IVckPzUGzT5LYt5h"})
   	),
     document.getElementById('app')
 );

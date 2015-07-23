@@ -3,14 +3,19 @@ var CardHolder = React.createClass({
 
 	getInitialState : function(){
 		return {
+			pageNumber : 1,
 			projects : []
 		}
 	},
 
 	componentDidMount : function(){
+		this.makeRequest(this.state.pageNumber);
+	},
+
+	makeRequest : function(page){
 
 		$.ajax({
-		    url: this.props.api,
+		    url: this.props.api + "&page=" + page,
 		    jsonp: "callback",
 		    dataType: "jsonp",
 		    success: this.onDataReceived
@@ -18,12 +23,17 @@ var CardHolder = React.createClass({
 	},
 
 	onDataReceived : function(data){
-
+		
 		if (this.isMounted()) {
         	this.setState({
-          		projects : data.projects
+          		projects : this.state.projects.concat(data.projects),
+          		pageNumber : this.state.pageNumber + 1
         	});
       	}
+	},
+
+	loadMorePosts : function(){
+		this.makeRequest(this.state.pageNumber);
 	},
 
 	render:function(){
@@ -33,6 +43,9 @@ var CardHolder = React.createClass({
 					{this.state.projects.map(function (data){
 						return <Card data={data}/>
 					})}
+				</div>
+				<div className="text-centre">
+					<Loadmore onClick={this.loadMorePosts} />
 				</div>
 			</div>
 		);
