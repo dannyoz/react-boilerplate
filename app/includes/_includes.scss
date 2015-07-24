@@ -1,122 +1,4 @@
 
-//Tones
-// --------------------------------
-$col-light  : #f6f6f6;
-$col-grey   : #ababab;
-$col-dark   : #222222;
-
-//Hues
-// --------------------------------
-$col-blue   : #125c8f;
-$col-green  : #4f903e;
-$col-orange : #eb9f18;
-
-// ============================================================
-// DARK THEME v0.8
-// ============================================================
-	
-	// THEME STYLE
-	// -------------------------------------------------------
-	$theme-style : "dark"; // "dark" or "light"
-
-	// FONTS
-	// -------------------------------------------------------
-	$primary-font : "Open Sans", sans-serif;
-	$secondary-font : "Open Sans Condensed", sans-serif;
-
-	// COLOURS
-	// --------------------------------------------------------
-	$theme-bg-colour     : #222222;
-	$theme-text-colour   : #AAAAAA;
-	$theme-primary-col   : #e7a753;
-	$theme-secondary-col : #aa4f40;
-	$theme-tertiary-col  : #c37a3f;
-
-	//Subtlety
-	$subtlety            : 5%;
-	$theme-subtle-light  : lighten($theme-bg-colour,$subtlety);
-	$theme-subtle-dark   : darken($theme-bg-colour,$subtlety);
-
-	//For loop mapping
-	$theme-colours : (
-		primary   : $theme-primary-col, 
-		secondary : $theme-secondary-col, 
-		tertiary  : $theme-tertiary-col
-	);
-
-
-	// BREAKPOINTS
-	// --------------------------------------------------------
-	$small-screens  : 550px;
-	$medium-screens : 780px;
-
-// ============================================================
-
-
-
-// DIMENSIONS
-// ==============================================
-	$containerWidth : 1000px;
-	$baseRounding   : 10px;
-
-
-
-// FORM SETTINGS
-// ==============================================
-	$inputs       : "text" "email" "password" "url" "tel" "search" !default;
-	$fmPadding    : 20px!default;
-	$fontFace     : 0.8em $primary-font !default;
-	$fmRounding   : 10px;
-
-	// Settings for modern checks 
-	$modernChecks : true;
-	$dialColour   : $theme-primary-col;
-	$check-width  : 55px;
-	$check-height : 20px;
-	$rounding     : 5px;
-	$inset        : 2px;
-
-// ============================================================
-// LIGHT THEME v0.7
-// ============================================================
-
-	// THEME STYLE
-	// -------------------------------------------------------
-	$theme-style : "light"; // "dark" or "light"
-
-	// FONTS
-	// -------------------------------------------------------
-	$primary-font : "Open Sans", sans-serif;
-	$secondary-font : "Open Sans Condensed", sans-serif;
-
-	// COLOURS
-	// --------------------------------------------------------
-	$theme-bg-colour     : #EAEAEA;
-	$theme-text-colour   : #444444;
-	$theme-primary-col   : #e7a753;
-	$theme-secondary-col : #aa4f40;
-	$theme-tertiary-col  : #c37a3f;
-
-	//Subtlety
-	$subtlety            : 3%;
-	$theme-subtle-light  : lighten($theme-bg-colour,$subtlety);
-	$theme-subtle-dark   : darken($theme-bg-colour,$subtlety);
-
-	//For loop mapping
-	$theme-colours : (
-		primary    : $theme-primary-col, 
-		secondary  : $theme-secondary-col, 
-		tertiary   : $theme-tertiary-col
-	);
-
-
-	// BREAKPOINTS
-	// --------------------------------------------------------
-	$small-screens  : 550px;
-	$medium-screens : 780px;
-
-// ============================================================
-
 // ##########################################################################
 // @Includes version 0.2
 // ##########################################################################
@@ -267,7 +149,10 @@ $col-turquoise: #289e83;
 			weight:600;
 		}
 
-		@include border-radius(#{$rounding}px);
+		@if $rounding > 0{
+
+			border-radius:#{$rounding}px;
+		}
 
 		&:hover, &:focus{
 
@@ -325,7 +210,7 @@ $col-turquoise: #289e83;
 
 
 // Requires @include button mixin...
-@mixin buttonTheme($className:"btn",$bgcol:#d73f2b,$opt-colour:false,$rounding:5,$gradient:false){
+@mixin buttonTheme($className:"btn",$bgcol:#d73f2b,$opt-colour:false,$gradient:false){
 
 	button.#{$className}{
 
@@ -347,11 +232,6 @@ $col-turquoise: #289e83;
 
 			@include background-image(linear-gradient(lighten($bgcol,7%),darken($bgcol,7%)));
 			border-color: darken($bgcol,7%);
-		}
-		
-		@if $rounding > 0{
-
-			@include border-radius(#{$rounding}px);
 		}
 
 		&:hover, &:focus{
@@ -424,6 +304,51 @@ $col-turquoise: #289e83;
 				margin-top: $padding/4;
 				margin-bottom: $padding/4;
 				margin-left:5px;
+			}
+		}
+	}
+}
+
+@mixin themeCardClass($blockColour:#f4f4f4,$borderColour:false,$headerStyle:false){
+
+	.card{
+		
+		background-color: $blockColour;
+
+		@if $borderColour{
+			border: 1px solid $borderColour;
+		}
+
+		header{
+
+			background-color:darken($blockColour,3%);
+
+			@if $borderColour{
+				border-bottom: 1px solid $borderColour;
+			}
+
+			@if $headerStyle{
+
+				h1,h2,h3,h4,h5,h6{
+
+					padding-left:10px;
+					border-left: 3px solid $headerStyle;
+				}
+			}
+		}
+
+		footer{
+
+			background-color:darken($blockColour,3%);
+
+			@if $borderColour{
+				border-top: 1px solid $borderColour;
+
+				a{
+
+					border-right: 1px solid $borderColour;
+				}
+
 			}
 		}
 	}
@@ -699,6 +624,106 @@ $col-turquoise: #289e83;
 	}
 }
 
+@mixin themeRangeInput($themeColour,$knob,$focus){
+	
+
+	input{
+
+		&[type=range]{
+
+  			// Thumb styling --
+  			// -------------------------
+
+  			&::-webkit-slider-thumb{
+  				
+  				background:$knob;
+  				border: 1px solid darken($knob,20%);
+  				
+  			}
+
+  			&::-moz-range-thumb {
+
+			  	background:$knob;
+			  	border: 1px solid darken($knob,20%);
+			}
+
+
+			&::-ms-thumb {
+
+			    background:$knob;
+			    border: 1px solid darken($knob,20%);
+			}
+
+			// Track styling --
+  			// -------------------------
+
+
+			&::-moz-range-track {
+
+			    background-color: lighten($themeColour,5%);
+				border: 1px solid darken($themeColour,10%);
+			}
+
+			&::-webkit-slider-runnable-track {
+
+				background-color: lighten($themeColour,5%);
+				border: 1px solid darken($themeColour,10%);
+			}
+
+			&::-ms-track {
+
+			    background-color: lighten($themeColour,5%);
+				border: 1px solid darken($themeColour,10%);
+			}
+
+			&::-ms-fill-lower {
+
+			    background: $focus;
+			    border: 1px solid darken($focus,10%);
+			}
+
+			&:focus{
+				
+				&::-webkit-slider-thumb{
+  				
+	  				background:$focus;
+	  				border: 1px solid darken($focus,20%);
+	  				
+	  			}
+
+	  			&::-moz-range-thumb {
+
+				  	background:$focus;
+				  	border: 1px solid darken($focus,20%);
+				}
+
+
+				&::-ms-thumb {
+
+				    background:$focus;
+				    border: 1px solid darken($focus,20%);
+				}
+
+				&::-moz-range-track {
+
+					border: 1px solid $focus;
+				}
+
+				&::-webkit-slider-runnable-track {
+
+					border: 1px solid $focus;
+				}
+
+				&::-ms-track {
+
+					border: 1px solid $focus;
+				}
+			}
+		}
+	}
+}
+
+
 
 @mixin form($rounding:5,$padding:10px 20px,$inputs : "text" "email" "password" "url" "tel" "search" "date" "time" "number") {
 	
@@ -757,6 +782,41 @@ $col-turquoise: #289e83;
 	}
 
 }
+
+@mixin themeForms($themeColour,$primary){
+
+	$inputs : "text" "email" "password" "url" "tel" "search" "date" "time" "number";
+
+	textarea{
+
+		background-color: lighten($themeColour,5%);
+		border: 1px solid darken($themeColour,10%);
+		color: contrast($themeColour);
+
+		&:hover{
+
+			border-color: darken($themeColour,20%);;
+		}
+
+		&:focus{
+
+			border-color: $primary;
+		}
+	} 
+
+	select{
+
+		@extend textarea;
+	}
+
+	@each $input in $inputs {
+		input[type=#{$input}]{
+
+			@extend textarea;
+		}
+	}
+}
+
 // -----------------------------------------
 // Grid mixins
 // -----------------------------------------
@@ -873,7 +933,7 @@ $col-turquoise: #289e83;
 		padding:20px;
 		margin-bottom: 20px;
 		@include box-sizing(border-box);
-		@include border-radius(5px);
+		border-radius:5px;
 
 		@if $bg {
 
@@ -912,7 +972,7 @@ $col-turquoise: #289e83;
 
 	    @if $rounding > 0{
 
-	    	@include border-radius(#{($rounding)}px);
+	    	border-radius:#{$rounding};
 	    }
 
 		img{
@@ -949,26 +1009,23 @@ $col-turquoise: #289e83;
 }
 
 
-@mixin scrollbar ($basecol : $col-dark){
+@mixin scrollbar ($basecol:#ddd,$width:16px){
 
 	overflow: auto ;
 
 	&::-webkit-scrollbar {
-	    width: 6px;
+	    width: $width;
 	    padding:10px;
 	}
 	 
 	&::-webkit-scrollbar-track {
-	    -webkit-box-shadow: inset 0 0 6px rgba(0,0,0,0.3); 
 	    background: lighten($basecol,20%);
-	    border-radius: 10px;
 	}
 	 
 	&::-webkit-scrollbar-thumb {
 	    border-radius: 10px;
-	    background: lighten($basecol,10%);
-	    border:1px solid darken($basecol,10%);
-	    -webkit-box-shadow: inset 0 0 6px rgba(0,0,0,0.5); 
+	    background: darken($basecol,10%);
+	    border:2px solid lighten($basecol,20%);
 	}
 
 }
@@ -977,7 +1034,7 @@ $col-turquoise: #289e83;
 
 	width:$size;
 	height:$size;
-	@include border-radius($size);
+	border-radius:$size;
 }
 
 @mixin arrow($size:10px,$dir:"down",$colour:white,$angle:0.7){
@@ -1318,6 +1375,68 @@ $col-turquoise: #289e83;
 	}
 }
 
+@mixin messageClass($padding:10px,$rounding:5,$border:false){
+
+	.message{
+
+		display: block;
+		padding:$padding;
+		margin-bottom: 10px;
+
+		@if $rounding > 0 {
+
+			border-radius: #{$rounding}px;
+		}
+
+		@if $border {
+
+			border:1px solid #ccc;
+		}
+
+		h1,h2,h3,h4,h5,p{
+
+			margin-bottom: 0;
+			font-size: 1em;
+		}
+	}
+
+}
+
+@mixin themeMessageClass($classname:"",$color:$col-primary,$text-col:false){
+
+	.message.#{$classname} {
+
+		@if $text-col == false {
+
+			color: $color;
+			border-color: $color;
+			background-color: lighten($color,45%);
+
+			h1,h2,h3,h4,h5,h6,p{
+
+				color: $color;
+			}
+
+		}
+
+		@if $text-col{
+
+			color: $text-col;
+			border-color: $color;
+			background-color: $color;
+
+			h1,h2,h3,h4,h5,h6,p{
+
+				color: $text-col;
+			}
+		}
+
+	}
+
+
+}
+
+
 @mixin navigationClasses($orientation:"horizontal",$font-size:1em,$link-height:50px,$padding:20px,$rounding:5px,$align:left,$expand:false){
 
 
@@ -1330,7 +1449,7 @@ $col-turquoise: #289e83;
 			@if $rounding{
 
 				//overflow: hidden;
-				@include border-radius(#{$rounding});
+				border-radius:#{$rounding};
 			}
 
 			ul{
@@ -1386,7 +1505,7 @@ $col-turquoise: #289e83;
 			@if $rounding{
 
 				overflow: hidden;
-				@include border-radius(#{$rounding});
+				border-radius:#{$rounding};
 			}
 
 			ul{
@@ -1449,10 +1568,59 @@ $col-turquoise: #289e83;
 	}
 }
 
+@mixin themeNavigation($className:"",$bg:false,$hover:#fff,$text:#666,$borders:false){
 
-nav.vertical .subnav{
-	@include subnav;
+	nav.#{$className}{
+	
+		@if $bg{
+			background-color:$bg;
+		}
+
+		ul li a{
+
+			color:$text;
+
+			&:hover{
+
+				background-color:$hover;
+				color:contrast($hover);
+			}
+		}
+
+		@if $bg{
+			
+			.subnav{
+				background-color:$bg;
+			}
+		}
+
+		@if $borders{
+
+			&.horizontal{
+
+				ul li{
+
+					border-right:1px solid $borders;
+				}
+			}
+
+			&.vertical{
+
+				ul li{
+
+					border-bottom:1px solid $borders;
+				}
+			}
+
+			ul li:last-child{
+
+				border:none;
+			}
+		}
+	}
 }
+
+
 @mixin tables($padding:10px){
 
 	table.table {
@@ -1487,9 +1655,31 @@ nav.vertical .subnav{
 			vertical-align: top;
 			display: table-cell;
 		}
-	}
+	}	
+}
 
+
+@mixin themeTables($themeColour){
 	
+	table.table{
+
+		td{
+
+			border-top: 1px solid darken($themeColour,10%);
+		}
+
+		th{
+
+			color: contrast($themeColour);
+		}
+
+		tbody tr{
+
+			&:nth-child(odd){
+				background-color: lighten($themeColour,2%);
+			}
+		}
+	}
 }
 
 
@@ -1544,48 +1734,7 @@ nav.vertical .subnav{
 }
 
 
-@mixin themeTypography($themeColour:#e9e9e9,$body:#666,$heading:#111){
 
-
-
-	body{
-
-		color:$body;
-		font-size:1em;
-		line-height: 140%;
-	}
-
-	h1,h2,h3,h4,h5,h6{
-
-		color:$heading;
-	}
-
-	p{
-
-		color:$body;
-	}
-
-
-	hr{
-
-		display: block;
-	    margin: 20px 20px 40px 20px;
-	    height:0;
-	    border-left:none;
-	    border-right:none;
-	    border-top: 1px solid darken($themeColour,20%);
-		border-bottom: 1px solid lighten($themeColour,20%);
-		opacity: 0.3;
-	}
-
-	mark{
-
-		font-size: 0.8em;
-		background-color: orange;
-		padding:5px;
-	}
-
-}
 
 @mixin themeLinks($link:black,$hover:$col-primary,$visited:$col-secondary){
 
@@ -1609,285 +1758,8 @@ nav.vertical .subnav{
 	}
 }
 
-@mixin themeForms($themeColour,$primary){
 
-	$inputs : "text" "email" "password" "url" "tel" "search" "date" "time" "number";
 
-	textarea{
-
-		background-color: lighten($themeColour,5%);
-		border: 1px solid darken($themeColour,10%);
-		color: contrast($themeColour);
-
-		&:hover{
-
-			border-color: darken($themeColour,20%);;
-		}
-
-		&:focus{
-
-			border-color: $primary;
-		}
-	} 
-
-	select{
-
-		@extend textarea;
-	}
-
-	@each $input in $inputs {
-		input[type=#{$input}]{
-
-			@extend textarea;
-		}
-	}
-}
-
-@mixin themeRangeInput($themeColour,$knob,$focus){
-	
-
-	input{
-
-		&[type=range]{
-
-  			// Thumb styling --
-  			// -------------------------
-
-  			&::-webkit-slider-thumb{
-  				
-  				background:$knob;
-  				border: 1px solid darken($knob,20%);
-  				
-  			}
-
-  			&::-moz-range-thumb {
-
-			  	background:$knob;
-			  	border: 1px solid darken($knob,20%);
-			}
-
-
-			&::-ms-thumb {
-
-			    background:$knob;
-			    border: 1px solid darken($knob,20%);
-			}
-
-			// Track styling --
-  			// -------------------------
-
-
-			&::-moz-range-track {
-
-			    background-color: lighten($themeColour,5%);
-				border: 1px solid darken($themeColour,10%);
-			}
-
-			&::-webkit-slider-runnable-track {
-
-				background-color: lighten($themeColour,5%);
-				border: 1px solid darken($themeColour,10%);
-			}
-
-			&::-ms-track {
-
-			    background-color: lighten($themeColour,5%);
-				border: 1px solid darken($themeColour,10%);
-			}
-
-			&::-ms-fill-lower {
-
-			    background: $focus;
-			    border: 1px solid darken($focus,10%);
-			}
-
-			&:focus{
-				
-				&::-webkit-slider-thumb{
-  				
-	  				background:$focus;
-	  				border: 1px solid darken($focus,20%);
-	  				
-	  			}
-
-	  			&::-moz-range-thumb {
-
-				  	background:$focus;
-				  	border: 1px solid darken($focus,20%);
-				}
-
-
-				&::-ms-thumb {
-
-				    background:$focus;
-				    border: 1px solid darken($focus,20%);
-				}
-
-				&::-moz-range-track {
-
-					border: 1px solid $focus;
-				}
-
-				&::-webkit-slider-runnable-track {
-
-					border: 1px solid $focus;
-				}
-
-				&::-ms-track {
-
-					border: 1px solid $focus;
-				}
-			}
-		}
-	}
-}
-
-@mixin themePanelClass($type){
-
-	@if $type == "dark" {
-
-		.panel{
-
-			background-color: #1f1f1f;
-			border-color: #111;
-
-			header, footer{
-
-				background-color: #272727;
-				border-color: #111;
-			}
-		}
-	}
-
-	@if $type == "light" {
-
-		.panel{
-
-			background-color: #e9e9e9;
-			border-color: #B3B3B3;
-
-			header, footer{
-
-				background-color: #f3f3f3;
-				border-color: #B3B3B3;
-			}
-		}
-	}
-}
-
-@mixin themeNavigation($className:"",$bg:false,$hover:#fff,$text:#666,$borders:false){
-
-	nav.#{$className}{
-	
-		@if $bg{
-			background-color:$bg;
-		}
-
-		ul li a{
-
-			color:$text;
-
-			&:hover{
-
-				background-color:$hover;
-				color:contrast($hover);
-			}
-		}
-
-		@if $bg{
-			
-			.subnav{
-				background-color:$bg;
-			}
-		}
-
-		@if $borders{
-
-			&.horizontal{
-
-				ul li{
-
-					border-right:1px solid $borders;
-				}
-			}
-
-			&.vertical{
-
-				ul li{
-
-					border-bottom:1px solid $borders;
-				}
-			}
-
-			ul li:last-child{
-
-				border:none;
-			}
-		}
-	}
-	
-	// nav.vertical, nav.horizontal{
-
-	// 	border: 1px solid #000;
-	// 	background-color: #171717;
-
-	// 	ul li{
-
-	// 		background-color: #171717;
-			
-	// 		a{color:#777;}
-
-	// 		&:hover{
-				
-	// 			a{color:white;}
-	// 			background-color: #121212;
-
-	// 			.subnav li {
-
-	// 				background-color: #121212;
-	// 				a{
-						
-	// 					color:#777;
-						
-	// 					&:hover{
-
-	// 						color: white;
-	// 					}
-	// 				}
-	// 			}
-	// 		}
-	// 	}
-	// }
-
-	// nav.vertical ul li{
-
-	// 	border-bottom: 1px solid #000;
-
-	// 	.subnav li {
-
-	// 		border-top: 1px dashed #000;
-	// 		border-bottom: none;
-	// 	}
-
-	// 	&:last-child{
-
-	// 		border-bottom: none;
-	// 	}
-	// }
-
-	// nav.horizontal ul li{
-
-	// 	border-right: 1px solid #000;
-
-
-
-	// 	&:last-child{
-
-	// 		border-right: none;
-	// 	}
-	// }
-
-}
 
 @mixin themeStack($themeColour){
 
@@ -1905,129 +1777,6 @@ nav.vertical .subnav{
 	}
 
 }
-
-@mixin themeTables($themeColour){
-	
-	table.table{
-
-		td{
-
-			border-top: 1px solid darken($themeColour,10%);
-		}
-
-		th{
-
-			color: contrast($themeColour);
-		}
-
-		tbody tr{
-
-			&:nth-child(odd){
-				background-color: lighten($themeColour,2%);
-			}
-		}
-	}
-}
-
-@mixin themeCardClass($blockColour:#f4f4f4,$borderColour:#c9c9c9,$headerStyle:false){
-
-	.card{
-		
-		background-color: $blockColour;
-		border: 1px solid $borderColour;
-
-		header{
-
-			background-color:lighten($borderColour,10%);
-			border-bottom: 1px solid $borderColour;
-
-			@if $headerStyle{
-
-				h1,h2,h3,h4,h5,h6{
-
-					padding-left:10px;
-					border-left: 3px solid $headerStyle
-				}
-			}
-		}
-
-		footer{
-
-			background-color:lighten($borderColour,10%);
-			border-top: 1px solid $borderColour;
-
-			a{
-
-				border-right: 1px solid $borderColour;
-			}
-		}
-	}
-}
-
-@mixin theme($type:"dark",$themeColour:#222){
-
-	@include themeTypography($type);
-	@include themeForms($themeColour,$col-primary);
-	@include themePanelClass($type);
-	@include themeNavigation($type);
-	@include stackTheme($type);
-	@include themeTables($themeColour);
-	
-
-	@if $type == "dark" {
-
-		header.sticky{
-
-			background-color: #111;
-			color:#eee;
-		}
-
-		.grid-block, .masonry-item{
-			
-			background-color: #252525;
-			border: 1px solid #111;
-		}
-
-		hr{
-
-			display: block;
-		    margin: 20px 20px 40px 20px;
-		    height:0;
-		    border-left:none;
-		    border-right:none;
-		    border-top: 1px solid #000;
-	    	border-bottom: 1px solid #333;
-		}
-	}
-
-	@if $type == "light" {
-
-		header.sticky{
-
-			background-color: #111;
-			color:#eee;
-		}
-
-		.grid-block, .masonry-item{
-			
-			background-color: #fff;
-			border: 1px solid #ddd;
-		}
-
-		hr{
-			
-			display: block;
-		    margin: 20px 20px 40px 20px;
-		    height:0;
-		    border-left:none;
-		    border-right:none;
-		    border-top: 1px solid #ddd;
-	    	border-bottom: 1px solid #fff;
-		}
-	}
-
-}
-
 
 
 
@@ -2143,7 +1892,46 @@ nav.vertical .subnav{
 
 	@include transformKeyframes(pulse,$pulse-stops);
 }
+@mixin themeTypography($themeColour:#e9e9e9,$body:#666,$heading:#111){
 
+    body{
+
+        color:$body;
+        font-size:1em;
+        line-height: 140%;
+    }
+
+    h1,h2,h3,h4,h5,h6{
+
+        color:$heading;
+    }
+
+    p{
+
+        color:$body;
+    }
+
+
+    hr{
+
+        display: block;
+        margin: 20px 20px 40px 20px;
+        height:0;
+        border-left:none;
+        border-right:none;
+        border-top: 1px solid darken($themeColour,20%);
+        border-bottom: 1px solid lighten($themeColour,20%);
+        opacity: 0.3;
+    }
+
+    mark{
+
+        font-size: 0.8em;
+        background-color: orange;
+        padding:5px;
+    }
+
+}
 
 //Adds a gradient text effect - WEBKIT ONLY!!!
 @mixin gradientText($top:#fcfcfc,$bottom:#828282){
@@ -2185,104 +1973,3 @@ nav.vertical .subnav{
 
     }
 }
-// -----------------------------------------
-// Core common mixins
-// -----------------------------------------
-
-@mixin core($config){
-
-	$stack       : map-get($config,stack);
-	$container   : map-get($config,container);
-	$rounded     : map-get($config,rounded);
-	$border-box  : map-get($config,borderBox);
-	$transitions : map-get($config,transitions);
-	$fitParent   : map-get($config,fitParent);
-	$centre      : map-get($config,centre);
-	$fadeIn      : map-get($config,fadeIn);
-
-	/* =========================================*/
-	/* CORE GLOBALS                             */
-	/* =========================================*/
-
-	@if $container {
-
-		.container{
-
-			margin:0 auto;
-			max-width:$container;
-		}
-	}
-
-	@if $stack {
-
-		.stack{
-			@include stack;
-		}
-	}
-
-	@if $rounded{
-
-		@for $i from 1 through length($rounded) {
-			
-			$ammount : nth($rounded,$i);
-
-			.rounded-#{$ammount}{
-				@include border-radius($ammount);
-			}
-
-		}
-
-	}
-
-	@if $border-box {
-
-		.border-box{
-			@include box-sizing(border-box);
-		}
-	}
-
-	@if $transitions{
-
-		@for $i from 1 through length($transitions) {
-			
-			$transition : nth($transitions,$i);
-
-			.transition-#{$i}{
-				@include single-transition(all,$transition,ease)
-			}
-
-		}
-	}
-
-	@if $fitParent{
-
-		.fitParent{
-			@include fitParent;
-		}
-	}
-
-	@if $centre{
-
-		.centre{
-			@include centre;
-		}
-
-		.centre-x{
-			@include centre(x);
-		}
-
-		.centre-y{
-			@include centre(y);
-		}
-	}
-
-	@if $fadeIn{
-
-		.fadeIn{
-			@include animation(fadeIn,ease,0.5s,5,0.2s)
-		}
-	}
-
-	/* =========================================*/
-}
-

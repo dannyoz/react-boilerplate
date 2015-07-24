@@ -1,8 +1,3 @@
-nav.vertical .subnav li a {
-  font-size: 0.9em;
-  padding-left: 40px;
-}
-
 html, body, div, span, applet, object, iframe,
 h1, h2, h3, h4, h5, h6, p, blockquote, pre,
 a, abbr, acronym, address, big, cite, code,
@@ -348,17 +343,6 @@ h6 {
   }
 }
 /* =========================================*/
-@font-face {
-  font-family: 'Leckerli One';
-  font-style: normal;
-  font-weight: 400;
-  src: local("Leckerli One"), local("LeckerliOne-Regular"), url(http://fonts.gstatic.com/s/leckerlione/v7/S2Y_iLrItTu8kIJTkS7DrOgdm0LZdjqr5-oayXSOefg.woff2) format("woff2");
-  unicode-range: U+0000-00FF, U+0131, U+0152-0153, U+02C6, U+02DA, U+02DC, U+2000-206F, U+2074, U+20AC, U+2212, U+2215, U+E0FF, U+EFFD, U+F000;
-}
-.leckerli-one {
-  font-family: "Leckerli One", arial, sans-serif;
-}
-
 label {
   display: block;
   margin: 0 0 10px 5px;
@@ -677,8 +661,6 @@ table.table th, table.table td {
 
 nav.vertical {
   overflow: hidden;
-  -moz-border-radius: 5px;
-  -webkit-border-radius: 5px;
   border-radius: 5px;
 }
 nav.vertical ul {
@@ -702,8 +684,6 @@ nav.vertical ul li:last-child a {
 
 nav.horizontal {
   display: inline-block;
-  -moz-border-radius: 0;
-  -webkit-border-radius: 0;
   border-radius: 0;
 }
 nav.horizontal ul {
@@ -748,9 +728,7 @@ nav.horizontal ul li a {
   margin: 0 0 1em;
   width: 100%;
   overflow: hidden;
-  -moz-border-radius: 5px;
-  -webkit-border-radius: 5px;
-  border-radius: 5px;
+  border-radius: 5;
 }
 .masonry-item img {
   display: block;
@@ -773,9 +751,7 @@ nav.horizontal ul li a {
     margin: 0 0 0.9em;
     width: 100%;
     overflow: hidden;
-    -moz-border-radius: 5px;
-    -webkit-border-radius: 5px;
-    border-radius: 5px;
+    border-radius: 5;
   }
   .masonry-item img {
     display: block;
@@ -798,9 +774,7 @@ nav.horizontal ul li a {
     margin: 0 0 0.8em;
     width: 100%;
     overflow: hidden;
-    -moz-border-radius: 5px;
-    -webkit-border-radius: 5px;
-    border-radius: 5px;
+    border-radius: 5;
   }
   .masonry-item img {
     display: block;
@@ -1428,15 +1402,6 @@ textarea:focus, input[type=text]:focus, input[type=email]:focus, input[type=pass
   border-color: #289e83;
 }
 
-.panel {
-  background-color: #e9e9e9;
-  border-color: #B3B3B3;
-}
-.panel header, .panel footer {
-  background-color: #f3f3f3;
-  border-color: #B3B3B3;
-}
-
 nav.main {
   background-color: #111;
 }
@@ -1566,8 +1531,6 @@ button, .button, button.dark, button.primary, button.secondary, button.warning, 
   border-bottom: 4px solid #bbb;
   font-size: 0.9em;
   font-weight: 600;
-  -moz-border-radius: 5px;
-  -webkit-border-radius: 5px;
   border-radius: 5px;
 }
 button:hover, .button:hover, button:focus, .button:focus {
@@ -1602,9 +1565,6 @@ button.dark, .dark.button {
   color: #888888;
   border-color: #090909;
   background-color: #222;
-  -moz-border-radius: 5px;
-  -webkit-border-radius: 5px;
-  border-radius: 5px;
 }
 button.dark:hover, .dark.button:hover, button.dark:focus, .dark.button:focus {
   background-color: #090909;
@@ -1615,9 +1575,6 @@ button.primary, .primary.button {
   color: #a9e9da;
   border-color: #1e7561;
   background-color: #289e83;
-  -moz-border-radius: 5px;
-  -webkit-border-radius: 5px;
-  border-radius: 5px;
 }
 button.primary:hover, .primary.button:hover, button.primary:focus, .primary.button:focus {
   background-color: #1e7561;
@@ -1628,9 +1585,6 @@ button.secondary, .secondary.button {
   color: #93e0ec;
   border-color: #13616d;
   background-color: #1b8898;
-  -moz-border-radius: 5px;
-  -webkit-border-radius: 5px;
-  border-radius: 5px;
 }
 button.secondary:hover, .secondary.button:hover, button.secondary:focus, .secondary.button:focus {
   background-color: #13616d;
@@ -1641,9 +1595,6 @@ button.warning, .warning.button {
   color: #f8e3c9;
   border-color: #aa6a18;
   background-color: #d7861e;
-  -moz-border-radius: 5px;
-  -webkit-border-radius: 5px;
-  border-radius: 5px;
 }
 button.warning:hover, .warning.button:hover, button.warning:focus, .warning.button:focus {
   background-color: #aa6a18;
@@ -1654,9 +1605,6 @@ button.danger, .danger.button {
   color: #edb3b3;
   border-color: #831e1e;
   background-color: #ac2828;
-  -moz-border-radius: 5px;
-  -webkit-border-radius: 5px;
-  border-radius: 5px;
 }
 button.danger:hover, .danger.button:hover, button.danger:focus, .danger.button:focus {
   background-color: #831e1e;
@@ -1667,9 +1615,6 @@ button.submit, .submit.button {
   color: #c9e8be;
   border-color: #407b2c;
   background-color: #54A03A;
-  -moz-border-radius: 5px;
-  -webkit-border-radius: 5px;
-  border-radius: 5px;
 }
 button.submit:hover, .submit.button:hover, button.submit:focus, .submit.button:focus {
   background-color: #407b2c;
@@ -1680,9 +1625,6 @@ button.turquoise, .turquoise.button {
   color: #a9e9da;
   border-color: #1e7561;
   background-color: #289e83;
-  -moz-border-radius: 5px;
-  -webkit-border-radius: 5px;
-  border-radius: 5px;
 }
 button.turquoise:hover, .turquoise.button:hover, button.turquoise:focus, .turquoise.button:focus {
   background-color: #1e7561;
@@ -1699,7 +1641,7 @@ header.sticky {
   border: 1px solid #d7d7d7;
 }
 .card header, .grid-block header, .masonry-item header, .grid-example header, .icon-holder header {
-  background-color: #f1f1f1;
+  background-color: #eeeeee;
   border-bottom: 1px solid #d7d7d7;
 }
 .card header h1, .grid-block header h1, .masonry-item header h1, .grid-example header h1, .icon-holder header h1, .card header h2, .grid-block header h2, .masonry-item header h2, .grid-example header h2, .icon-holder header h2, .card header h3, .grid-block header h3, .masonry-item header h3, .grid-example header h3, .icon-holder header h3, .card header h4, .grid-block header h4, .masonry-item header h4, .grid-example header h4, .icon-holder header h4, .card header h5, .grid-block header h5, .masonry-item header h5, .grid-example header h5, .icon-holder header h5, .card header h6, .grid-block header h6, .masonry-item header h6, .grid-example header h6, .icon-holder header h6 {
@@ -1707,7 +1649,7 @@ header.sticky {
   border-left: 3px solid #289e83;
 }
 .card footer, .grid-block footer, .masonry-item footer, .grid-example footer, .icon-holder footer {
-  background-color: #f1f1f1;
+  background-color: #eeeeee;
   border-top: 1px solid #d7d7d7;
 }
 .card footer a, .grid-block footer a, .masonry-item footer a, .grid-example footer a, .icon-holder footer a {

@@ -9,7 +9,7 @@ module.exports = function(grunt) {
                 src: [
                     //'app/bower_components/jquery/dist/jquery.js',
                     'app/bower_components/react/react.js',
-                    'app/components/**/*.js'
+                    'app/transpiled/**/*.js'
                 ],
                 dest: 'app/main.js',
             }
@@ -29,7 +29,7 @@ module.exports = function(grunt) {
                         expand: true,
                         cwd: 'app/components/',
                         src: [ '**/*.jsx' ],
-                        dest: 'app/components/',
+                        dest: 'app/transpiled/',
                         ext: '.js'
                     }
                 ]
@@ -39,7 +39,7 @@ module.exports = function(grunt) {
         watch: {
             scripts: {
                 files: [
-                    'app/components/**/*.js'
+                    'app/transpiled/**/*.js'
                 ],
                 tasks: ['concat', 'uglify'],
                 options: {
