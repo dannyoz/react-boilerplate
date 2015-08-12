@@ -1,0 +1,197 @@
+@mixin navigationClasses($orientation:"horizontal",$font-size:1em,$link-height:50px,$padding:20px,$rounding:5px,$align:left,$expand:false){
+
+
+	@if $orientation == "horizontal"{
+
+		nav.horizontal{
+
+			display:inline-block;
+
+			@if $rounding{
+
+				//overflow: hidden;
+				border-radius:#{$rounding};
+			}
+
+			ul{
+				
+				text-align: $align;
+
+				li{
+
+					position: relative;
+					display: inline-block;
+
+					.subnav{
+
+						height:0;
+						overflow:hidden;
+						position: absolute;
+						top:$link-height;
+						width:300px;
+
+						li{
+
+							display:list-item;
+
+							&.active a{
+
+								color:$col-pastel-red;
+							}
+						}
+					}
+
+					&:hover .subnav{
+
+						height:auto;
+					}
+					
+					a{
+						
+						font-size: $font-size;
+						line-height: $link-height;
+						display: block;
+						padding:0 $padding;
+
+					}
+				}
+			}
+
+		}
+	}
+
+	@if $orientation == "vertical"{
+
+		nav.vertical{
+
+			@if $rounding{
+
+				overflow: hidden;
+				border-radius:#{$rounding};
+			}
+
+			ul{
+				
+				text-align: $align;	
+
+				li{
+
+					display: list-item;
+					position: relative;
+
+					@if $expand{
+
+						&:hover .subnav{
+
+							height:auto;
+							padding:$padding 0;
+						}
+
+					}
+
+					a{
+						
+						font-size: $font-size;
+						line-height: $link-height;
+						display: block;
+						padding:0 $padding;
+
+					}
+				}
+			}
+
+			.subnav{
+
+				margin-bottom: 30px;
+
+				li{
+
+					a{
+						font-size: 0.8em;
+						padding-left: $padding*1.5;
+						line-height: $link-height*0.7; 
+					}
+
+					&.active a{
+
+						color:$col-pastel-red;
+						border-left:4px solid $col-pastel-red;
+					}
+				}
+				// &.closed{
+
+				// 	padding:0;
+				// 	height:0;
+				// 	overflow:hidden;
+				// }
+			}
+		}
+	}
+}
+
+@mixin navBadge($colour:$col-primary){
+
+	nav .badge{
+
+		position: absolute;
+		right:5px;
+		top:5px;
+		font-size:14px;
+		color:white;
+		line-height:28px;
+		width:28px;
+		border-radius:100%;
+		background:$colour;
+		text-align:center;
+	}
+}
+
+//@include navBadge;
+
+@mixin subnav($orientation:"vertical",$indent:40px,$expand:false){
+	
+	@if $orientation == "vertical"{
+
+		li a{
+			
+			font-size: 0.9em;
+			padding-left:$indent;
+		}
+	}
+
+	@if $expand{
+
+		height: 0;
+		overflow: hidden;
+		@include single-transition(all,0.3s,ease);
+	}
+}
+
+@mixin themeNavigation($className:"",$bg:false,$hover:#fff,$text:#666,$text-hover:#000){
+
+	nav.#{$className}{
+	
+		@if $bg{
+			background-color:$bg;
+		}
+
+		ul li a{
+
+			color:$text;
+
+			&:hover{
+
+				background-color:$hover;
+				color:$text-hover;
+			}
+		}
+
+		@if $bg{
+			
+			.subnav{
+				background-color:$bg;
+			}
+		}
+	}
+}
+

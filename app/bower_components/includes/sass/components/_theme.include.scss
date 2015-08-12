@@ -1,0 +1,91 @@
+
+// Experimental
+// --------------------------------------
+
+	@function applyColour($method,$col,$amt){
+		
+		@if $method == "lighten"{
+			@return lighten($col,$amt);
+		}
+
+		@if $method == "darken"{
+			@return darken($col,$amt);
+		}
+	}
+
+
+
+
+// Experimental
+// --------------------------------------
+
+
+
+@mixin themeBase($themeColour:#e9e9e9){
+	
+	body{
+
+		background-color: $themeColour;
+	}
+}
+
+
+
+
+@mixin themeLinks($link:black,$hover:$col-primary,$visited:$col-secondary){
+
+	a{
+
+		&:link{
+
+			color:$link;
+			text-decoration: none;
+		}
+
+		&:hover{
+
+			color: $hover;
+		}
+
+		&:active,&:visited{
+
+			color:darken($hover,10%);
+		}
+	}
+}
+
+
+
+
+
+
+
+
+@mixin swatch($name,$colour){
+
+
+	.#{$name}{
+
+		color:$colour;
+
+		&.bg{
+
+			background-color:$colour;
+		}
+
+		&.border{
+
+			border-color:$colour;
+		}
+
+		&.contrast{
+
+			color: contrast($colour,45%);
+		}
+	}
+
+}
+
+
+
+

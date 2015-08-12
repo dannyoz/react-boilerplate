@@ -1,0 +1,18 @@
+{
+  "name": "includes",
+  "version": "0.1.9alpha",
+  "main": "dist/_includes.scss",
+  "license": "MIT",
+  "ignore": [
+    "**/.*",
+    "build",
+    "BUILD",
+    "app",
+    "node_modules",
+    "sassdoc",
+    "*.md",
+    "Gruntfile.js",
+    "server.js",
+    "package.json"
+  ]
+}

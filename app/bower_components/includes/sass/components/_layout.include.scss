@@ -1,0 +1,377 @@
+// ------------------------------------------------------
+
+/// Modern masonry css layout. Uses *column-count to arange content 
+/// This mixin can be used with the @include cardClass; mixin
+/// to create "Pinterest" style layouts. Html5 browser support only.
+/// See caniuse for more info on column-count browser support.
+/// @link http://caniuse.com/#search=flexbox Browser support for column-count
+/// @see cardClass
+/// @name masonryClasses
+/// @param {Integer} ammount [4] Amount of masonry columns
+/// @param {Pixel/em value} gutter-width [1em] Width between and below masonry items
+/// @param {Integer} padding [0] Padding in pixels
+/// @param {Integer} rounding [0] Rounding in pixels
+/// @example scss - Include
+///  @include masonryClasses(4);
+///
+/// @example css - Output
+///  .masonry {
+///    -moz-column-count: 4;
+///    -webkit-column-count: 4;
+///    column-count: 4;
+///    margin: 1em 0;
+///    -moz-column-gap: 1em;
+///    -webkit-column-gap: 1em;
+///    column-gap: 1em;
+///  }
+///  
+///  .masonry .masonry-item {
+///    display: inline-block;
+///    margin: 0 0 1em;
+///    width: 100%;
+///    overflow: hidden;
+///    border-radius: 5;
+///  }
+///  .masonry .masonry-item img {
+///    display: block;
+///    width: 100%;
+///  }
+///  
+///
+
+
+@mixin masonryClasses($col-count:4,$gutter-width:1em,$padding:0,$rounding:5) {
+
+	.masonry{
+
+		-moz-column-count: $col-count;
+        -webkit-column-count: $col-count;
+        column-count: $col-count;
+		margin: $gutter-width 0;
+	    -moz-column-gap: $gutter-width;
+	    -webkit-column-gap: $gutter-width;
+	    column-gap: $gutter-width;
+
+	    .masonry-item{
+
+			display: inline-block;
+		    margin: 0 0 $gutter-width;
+		    width: 100%;
+		    overflow: hidden;
+
+		    @if $padding > 0{
+
+		    	padding:#{$padding}px;
+		    }
+
+		    @if $rounding > 0{
+
+		    	border-radius:#{$rounding};
+		    }
+
+			img{
+
+				display: block;
+				width: 100%;
+			}
+		}
+
+	}
+}
+
+
+// ------------------------------------------------------
+
+/// Adds a .container class
+/// @name containerClass
+/// @param {Pixel value} maxWidth [1024px] The maximum width of the container
+/// @param {Integer} padding [20] Padding left & right in pixels
+/// @example scss - Include
+///  @include containerClass(1024px,30)
+///
+/// @example css - Output
+///  .container {
+///    margin: 0 auto;
+///    max-width: 1024px;
+///    padding: 0 30px;
+///  }
+///
+
+@mixin containerClass($maxWidth:1024px,$padding:20){
+
+	.container{
+
+		margin: 0 auto;
+		max-width: $maxWidth;
+		
+		@if $padding > 0{
+			padding:0 #{$padding}px;
+		}
+	}
+}
+
+// ------------------------------------------------------
+
+/// Add stackable sections
+/// @name stackClass
+/// @param {Integer} padding [20] Padding top & bottom in pixels
+/// @example scss - Include
+///  @include stackClass(20)
+///
+/// @example css - Output
+///  .stack {
+///    padding: 20px 0;
+///    min-height: 1%;
+///  }
+///  .stack:after {
+///    content: "";
+///    display: table;
+///    clear: both;
+///  }
+///
+
+@mixin stackClass($padding:40){
+	
+	.stack{
+
+		@if $padding > 0{
+			padding:#{$padding}px 0 ;
+		}
+		
+		min-height: 1%;
+
+		&:after {
+	        content: "";
+	        display: table;
+	        clear: both;
+	    }
+	}
+}
+
+// ------------------------------------------------------
+
+/// Theming stackable sections
+/// @name themeStack
+/// @param {#hex/rgba} themeColour [] The base theme colour
+/// @example scss - Include
+///  @include stackClass(20);
+///  @include themeStack(#e9e9e9);
+///
+/// @example css - Output
+///  .stack {
+///    padding: 20px 0;
+///    min-height: 1%;
+///  }
+///  .stack:after {
+///    content: "";
+///    display: table;
+///    clear: both;
+///  }
+///  .stack {
+///    display: block;
+///    background-color: #e9e9e9;
+///    border-bottom: 1px solid #d7d7d7;
+///  }
+///  .stack:nth-child(even) {
+///    background-color: #e4e4e4;
+///  }
+///
+
+
+@mixin themeStack($themeColour){
+
+	.stack{
+
+		display: block;
+		background-color:$themeColour;
+		border-bottom:1px  solid darken($themeColour,7%);
+
+		&:nth-child(even){
+
+			background-color: darken($themeColour,2%);
+		}
+
+	}
+
+}
+
+// ------------------------------------------------------
+
+/// Nested include to apply full screen styles to a selector. 
+/// Uses the vh css property see caniuse for more information
+/// @link http://caniuse.com/#search=vh Browser support info for vh property
+/// @name fullScreen
+/// @example scss - Include
+///  section#intro {
+///  	@include fullScreen;
+///  }
+///
+/// @example css - Output
+///  section#intro {
+///    position: relative;
+///    width: 100%;
+///    height: 100vh;
+///  }
+///
+
+@mixin fullScreen{
+
+	position: relative;
+	width:100%;
+	height:100vh;
+}
+
+@mixin fullScreenClass{
+
+	.fullscreen{
+		position: relative;
+		width:100%;
+		height:100vh;
+	}
+}
+
+@mixin stickyHeader($height:50px,$position:fixed){
+
+	position: $position;
+	top:0;
+	height:$height;
+	width:100%;
+	z-index: 9999;
+}
+
+@mixin stickyHeaderClass($height:50px,$position:fixed){
+
+	header.sticky{
+
+		position: $position;
+		top:0;
+		height:$height;
+		width:100%;
+		z-index: 9999;
+	}
+	
+}
+
+@mixin paddedClass($ammount:20px){
+
+	.padded{
+
+		padding: $ammount;
+
+		h1,h2,h3,h4,h5,h6,p{
+
+			&:last-child{
+
+				margin-bottom: 0;
+			}
+		}
+	}
+}
+
+@mixin fitParent($all:"", $top:"", $right:"", $bottom:"", $left:""){
+	position:absolute;
+	@if $all != ""{
+		top:$all;
+		right:$all;
+		bottom:$all;
+		left:$all;
+	} @else{
+		@if $top != ""{
+			top:$top;
+			} @else{
+			top:0;
+		}
+
+		@if $right != ""{
+			right:$right;
+			} @else{
+			right:0;
+		}
+
+		@if $bottom != ""{
+			bottom:$bottom;
+			} @else{
+			bottom:0;
+		}
+
+		@if $left != ""{
+			left:$left;
+			} @else{
+			left:0;
+		}
+	}	
+}
+
+@mixin sideBar($width:300px,$side:"left"){
+
+	position:absolute;
+	top:0;
+	bottom:0;
+	width:$width;
+
+	@if $side == "left"{
+		left:0;
+	}
+
+	@if $side == "right"{
+		right:0;
+	}
+}
+
+@mixin sideBarAppend($width:300px,$side:"left"){
+
+	position:absolute;
+	top:0;
+	bottom:0;
+
+	@if $side == "left"{
+		left:$width;
+		right:0;
+	}
+
+	@if $side == "right"{
+		right:$width;
+		left:0;
+	}
+}
+
+@mixin centre($axis: "both"){
+	position:absolute;
+	@if $axis == "y"{
+		top:50%;
+		@include translateY(-50%);
+	}
+	@if $axis == "x"{
+		left:50%;
+		@include translateX(-50%);
+	}
+	@if $axis == "both"{
+		top:50%;
+		left:50%;
+		@include translate(-50%, -50%);
+	}	
+}
+
+@mixin centreClasses{
+
+	.centre{
+		@include centre;
+	}
+
+	.centre-x{
+
+		height:100%;
+		@include centre(x);
+	}
+
+	.centre-y{
+
+		width:100%;
+		@include centre(y);
+	}
+
+	.text-centre{
+
+		text-align: center;
+	}
+}
