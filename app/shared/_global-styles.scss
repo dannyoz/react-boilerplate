@@ -1,0 +1,21 @@
+// Spice Vendor Prefix overides
+// --------------------
+$defaultVendors   : "";
+$animationVendors : "";
+$transformVendors : "";
+
+$primary: $col-river-blue;
+$secondary: $col-amethyst;
+
+@include normalise;
+
+body {
+	@include googleFont('quicksand',h1 h2 h3 h4 h5 h6,400);
+	@include verticalRhythm;
+}
+
+.centre {
+	@include centre;
+}
+
+@include containerClass(1280px);

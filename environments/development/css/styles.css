@@ -1,0 +1,146 @@
+html, body, div, span, applet, object, iframe,
+h1, h2, h3, h4, h5, h6, p, blockquote, pre,
+a, abbr, acronym, address, big, cite, code,
+del, dfn, em, img, ins, kbd, q, s, samp,
+small, strike, strong, sub, sup, tt, var,
+b, u, i, center,
+dl, dt, dd, ol, ul, li,
+fieldset, form, label, legend,
+table, caption, tbody, tfoot, thead, tr, th, td,
+article, aside, canvas, details, embed,
+figure, figcaption, footer, header, hgroup,
+menu, nav, output, ruby, section, summary,
+time, mark, audio, video {
+  margin: 0;
+  padding: 0;
+  border: 0;
+  font: inherit;
+  font-size: 100%;
+  vertical-align: baseline; }
+
+html {
+  line-height: 1; }
+
+ol, ul {
+  list-style: none; }
+
+table {
+  border-collapse: collapse;
+  border-spacing: 0; }
+
+caption, th, td {
+  text-align: left;
+  font-weight: normal;
+  vertical-align: middle; }
+
+q, blockquote {
+  quotes: none; }
+
+q:before, q:after, blockquote:before, blockquote:after {
+  content: "";
+  content: none; }
+
+a img {
+  border: none; }
+
+article, aside, details, figcaption, figure, footer, header, hgroup, main, menu, nav, section, summary {
+  display: block; }
+
+* {
+  box-sizing: border-box; }
+
+.justify {
+  text-align: justify; }
+
+.align-left {
+  float: left; }
+
+.align-right {
+  float: right; }
+
+.align-centre {
+  display: block;
+  margin: 0 auto; }
+
+body {
+  line-height: 28px;
+  line-height: 1.75rem;
+  font-size: 16px;
+  font-size: 1rem; }
+
+@font-face {
+  body {
+    font-family: "Quicksand";
+    font-style: normal;
+    font-weight: 300;
+    src: local(Quicksand Light), local(Quicksand-Light), url(http://fonts.gstatic.com/s/quicksand/v5/qhfoJiLu10kFjChCCTvGlOgdm0LZdjqr5-oayXSOefg.woff2) format("woff2");
+    unicode-range: U+0000-00FF, U+0131, U+0152-0153, U+02C6, U+02DA, U+02DC, U+2000-206F, U+2074, U+20AC, U+2212, U+2215, U+E0FF, U+EFFD, U+F000; } }
+
+@font-face {
+  body {
+    font-family: "Quicksand";
+    font-style: normal;
+    font-weight: 400;
+    src: local(Quicksand Regular), local(Quicksand-Regular), url(http://fonts.gstatic.com/s/quicksand/v5/sKd0EMYPAh5PYCRKSryvW1tXRa8TVwTICgirnJhmVJw.woff2) format("woff2");
+    unicode-range: U+0000-00FF, U+0131, U+0152-0153, U+02C6, U+02DA, U+02DC, U+2000-206F, U+2074, U+20AC, U+2212, U+2215, U+E0FF, U+EFFD, U+F000; } }
+
+@font-face {
+  body {
+    font-family: "Quicksand";
+    font-style: normal;
+    font-weight: 700;
+    src: local(Quicksand Bold), local(Quicksand-Bold), url(http://fonts.gstatic.com/s/quicksand/v5/32nyIRHyCu6iqEka_hbKsugdm0LZdjqr5-oayXSOefg.woff2) format("woff2");
+    unicode-range: U+0000-00FF, U+0131, U+0152-0153, U+02C6, U+02DA, U+02DC, U+2000-206F, U+2074, U+20AC, U+2212, U+2215, U+E0FF, U+EFFD, U+F000; } }
+  body .quicksand, body h1, body h2, body h3, body h4, body h5, body h6 {
+    font-family: "Quicksand", arial, sans-serif;
+    font-weight: 400; }
+  body p, body h1, body h2, body h3, body h4, body h5, body h6 {
+    margin-bottom: 28px;
+    margin-bottom: 1.75rem; }
+  body h1 {
+    line-height: 56px;
+    line-height: 3.5rem;
+    font-size: 40px;
+    font-size: 2.5rem; }
+  body h2 {
+    line-height: 56px;
+    line-height: 3.5rem;
+    font-size: 36px;
+    font-size: 2.25rem; }
+  body h3 {
+    line-height: 56px;
+    line-height: 3.5rem;
+    font-size: 32px;
+    font-size: 2rem; }
+  body h4 {
+    line-height: 28px;
+    line-height: 1.75rem;
+    font-size: 28px;
+    font-size: 1.75rem; }
+  body h5 {
+    line-height: 28px;
+    line-height: 1.75rem;
+    font-size: 24px;
+    font-size: 1.5rem; }
+  body h6 {
+    line-height: 28px;
+    line-height: 1.75rem;
+    font-size: 20px;
+    font-size: 1.25rem; }
+
+.centre {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%); }
+
+.container {
+  margin: 0 auto;
+  max-width: 1280px;
+  padding: 0 20px; }
+
+.home {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%); }
