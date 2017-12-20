@@ -42,7 +42,7 @@ gulp.task('media',function(){
 gulp.task('browserify', function () {
     gulp.src('./app/app.js', {entry: true})
         .pipe(gbrowserify({
-            transform: ['vueify','babelify']
+            transform: ['babelify']
         }))
         .pipe(gulp.dest('./environments/development/js'))
         .pipe(stripDebug())
